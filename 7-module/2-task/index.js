@@ -43,12 +43,15 @@ export default class Modal {
   }
 
   escape(event) {
+    if (!document.querySelector(".modal")) {
+      return;
+    }
+
     if (event.code !== "Escape") {
       return;
     }
 
-    document.body.classList.remove("is-modal-open");
-    document.querySelector(".modal").remove();
+    this.close();
   }
 
   close(event) {
