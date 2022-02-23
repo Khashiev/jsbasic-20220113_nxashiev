@@ -1,13 +1,10 @@
-import createElement from "../../assets/lib/create-element.js";
+import createElement from '../../assets/lib/create-element.js';
 
 export default class Modal {
-  body = document.body;
-  container = document.querySelector(".container");
-
   constructor() {
     this.render();
 
-    this.elem.addEventListener("click", (event) => this.onClick(event));
+    this.elem.addEventListener('click', (event) => this.onClick(event));
   }
 
   render() {
@@ -33,42 +30,42 @@ export default class Modal {
 
   open() {
     document.body.append(this.elem);
-    document.body.classList.add("is-modal-open");
+    document.body.classList.add('is-modal-open');
 
     this._keydownEventListener = (event) => this.onDocumentKeyDown(event);
-    document.addEventListener("keydown", this._keydownEventListener);
+    document.addEventListener('keydown', this._keydownEventListener);
 
-    if (this.elem.querySelector("[autofocus]")) {
-      this.elem.querySelector("[autofocus]").focus();
+    if (this.elem.querySelector('[autofocus]')) {
+      this.elem.querySelector('[autofocus]').focus();
     }
   }
 
   onClick(event) {
-    if (event.target.closest(".modal__close")) {
+    if (event.target.closest('.modal__close')) {
       event.preventDefault();
       this.close();
     }
   }
 
   onDocumentKeyDown(event) {
-    if (event.code === "Escape") {
+    if (event.code === 'Escape') {
       event.preventDefault();
       this.close();
     }
   }
 
   setTitle(title) {
-    this.sub("title").textContent = title;
+    this.sub('title').textContent = title;
   }
 
   setBody(node) {
-    this.sub("body").innerHTML = "";
-    this.sub("body").append(node);
+    this.sub('body').innerHTML = '';
+    this.sub('body').append(node);
   }
 
   close() {
-    document.removeEventListener("keydown", this._keydownEventListener);
-    document.body.classList.remove("is-modal-open");
+    document.removeEventListener('keydown', this._keydownEventListener);
+    document.body.classList.remove('is-modal-open');
     this.elem.remove();
   }
 }
